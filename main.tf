@@ -11,7 +11,7 @@ provider ibm {
 # Resource Group where VPC Resources Will Be Created
 ##############################################################################
 
-resource ibm_resource_group resource_group {
+resource "ibm_resource_group" resource_group {
   name = var.resource_group
   tags = var.tags
 
@@ -31,7 +31,7 @@ resource "ibm_is_subnet" "subnet1" {
   name            = "${var.prefix}-subnet1"
   vpc             = ibm_is_vpc.vpc.id
   zone            = var.zone1
-  ipv4_cidr_block = "10.240.0.0/24"
+  ipv4_cidr_block = "10.242.0.0/24"
   resource_group  = ibm_resource_group.resource_group.id
   tags            = var.tags
 }
