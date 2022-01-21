@@ -18,3 +18,8 @@ output vsi_associated_vpc {
   value       = ibm_is_instance.vsi1.vpc
 }
 
+output fip_address {
+  description = "The floating IP address that was created"
+  value       = ibm_is_floating_ip.fip1.address
+}
+
