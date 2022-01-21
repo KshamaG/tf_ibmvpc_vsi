@@ -36,6 +36,35 @@ resource "ibm_is_subnet" "subnet1" {
   tags            = var.tags
 }
 
+resource "ibm_is_security_group" "sg1" {
+  name           = "${var.prefix}-sg1"
+  vpc            = ibm_is_vpc.vpc.id
+  resource_group = ibm_resource_group.resource_group.id
+}
+
+/* 
+allow ssh and ping access to this instance
+https://cloud.ibm.com/docs/vpc?topic=vpc-configuring-the-security-group&interface=ui#example-security-group
+*/
+resource "ibm_is_security_group_rule" "allow-inbound-ssh-sg1" {
+  group     = ibm_is_security_group.sg1.id
+  direction = "inbound"
+  remote    = "0.0.0.0/0"
+  tcp {
+    port_min = 22
+    port_max = 22
+  }
+}
+
+resource "ibm_is_security_group_rule" "allow-inbound-ping-sg1" {
+  group     = ibm_is_security_group.sg1.id
+  direction = "inbound"
+  remote    = "0.0.0.0/0"
+  icmp = {
+    type = 8
+  }
+}
+
 ##############################################################################
 # Create VSI in your VPC
 ##############################################################################
@@ -93,6 +122,7 @@ resource "ibm_is_floating_ip" "fip1" {
   resource_group = ibm_resource_group.resource_group.id
   tags           = var.tags
 }
+
 
 
 
