@@ -97,14 +97,7 @@ resource "ibm_is_instance" "vsi1" {
   primary_network_interface {
     subnet               = ibm_is_subnet.subnet1.id
     primary_ipv4_address = "10.242.0.6"
-    # allow_ip_spoofing = true
   }
-
-  # network_interfaces {
-  #   name   = "eth1"
-  #   subnet = ibm_is_subnet.subnet1.id
-  #   # allow_ip_spoofing = false
-  # }
 
   //User can configure timeouts
   timeouts {
@@ -124,7 +117,7 @@ resource "ibm_is_floating_ip" "fip1" {
 }
 
 
-
+##############################################################################
 
 
 
