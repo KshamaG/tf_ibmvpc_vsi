@@ -60,7 +60,7 @@ resource "ibm_is_security_group_rule" "allow-inbound-ping-sg1" {
   group     = ibm_is_security_group.sg1.id
   direction = "inbound"
   remote    = "0.0.0.0/0"
-  icmp = {
+  icmp {
     type = 8
   }
 }
