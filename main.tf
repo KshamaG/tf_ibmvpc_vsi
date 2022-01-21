@@ -67,7 +67,7 @@ resource "ibm_is_instance" "vsi1" {
 
   primary_network_interface {
     subnet               = ibm_is_subnet.subnet1.id
-    primary_ipv4_address = "10.240.0.6"
+    primary_ipv4_address = "10.242.0.6"
     # allow_ip_spoofing = true
   }
 
